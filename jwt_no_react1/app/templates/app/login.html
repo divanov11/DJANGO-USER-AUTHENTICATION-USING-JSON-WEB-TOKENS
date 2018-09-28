@@ -1,0 +1,34 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	if (localStorage.token != null){
+	      window.location.href = 'http://127.0.0.1:8000/'
+	    }
+</script>
+
+<h5>Login</h5>
+<form id="form">
+	<input name="username" ref="user" type="text" placeholder="Enter username..." />
+	<input name="password" ref="password" type="password" placeholder="Enter password..." />
+	<input type="submit" value="Login">
+</form>
+
+<script>
+	$('#form').on('submit', function(e){
+		e.preventDefault()
+
+		var url = '/get_token/'
+		$.ajax({
+			method: "POST",
+			url: url,
+			data:$(this).serialize(),	
+			success:function(response){	
+				console.log(response)	
+				localStorage.token = response.token
+				if (localStorage.token != null){
+			      window.location.href = 'http://127.0.0.1:8000/'
+			    }
+			}
+		});
+	})
+</script>

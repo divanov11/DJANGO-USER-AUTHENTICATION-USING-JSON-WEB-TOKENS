@@ -1,0 +1,21 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	if (localStorage.token == null){
+      window.location.href = 'http://127.0.0.1:8000/login/'
+    }
+</script>
+
+<h5>Congradulations! You logged in!</h5>
+
+<script>
+    var url = 'http://127.0.0.1:8000/get_user/' + localStorage.token
+    $.ajax({
+			method: "GET",
+			url: url,
+			success:function(response){	
+				console.log(response)	
+
+			}
+		});
+</script>
